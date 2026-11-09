@@ -1,77 +1,21 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Global</title>
-<style>
-:root{font-family:Inter,Arial,sans-serif;color:#1d2b44;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1100px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;background:white;padding:16px 24px;border-bottom:1px solid #e6ebf3}.brand{font-size:21px;font-weight:800;color:#245bd0}.muted{color:#8190a6}.panel{background:white;border:1px solid #e6ebf3;border-radius:16px;padding:22px;margin:18px 0}.hero{background:linear-gradient(120deg,#173b83,#3779df);color:white;border-radius:20px;padding:38px;margin:20px 0}.hero h1{font-size:38px;margin:8px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.field{display:block;margin:12px 0;font-size:13px;font-weight:600}.field input,.field select{display:block;width:100%;padding:12px;border:1px solid #dce3ee;border-radius:9px;margin-top:6px}.btn{background:#2d63d5;color:white;border:0;border-radius:9px;padding:12px 16px;font-weight:700}.btn.secondary{background:#edf3ff;color:#285ac5}.btn:disabled{opacity:.5}.chip{border:1px solid #dce3ee;background:white;border-radius:20px;padding:8px 11px;margin:4px}.chip.on{background:#edf3ff;border-color:#8eaff0;color:#245bd0}.hidden{display:none!important}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tabs button{background:white;border:1px solid #e3e9f2;border-radius:9px;padding:10px 14px}.tabs button.active{background:#eaf1ff;color:#245bd0;border-color:#9bb7ef}.item{border:1px solid #e6ebf3;border-radius:12px;padding:16px;background:white}.item h3{margin:7px 0}.chat{height:360px;overflow:auto;border:1px solid #e6ebf3;border-radius:12px;padding:14px}.msg{background:#f0f4fb;border-radius:12px;padding:9px 12px;margin:9px 0;max-width:80%;font-size:14px}.mine{background:#e6efff;margin-left:auto}.row{display:flex;gap:8px}.row input{flex:1;min-width:0;padding:12px;border:1px solid #dce3ee;border-radius:9px}.note{padding:12px;background:#fff7e8;color:#805c1a;border-radius:9px;margin:12px 0}.small{font-size:12px}@media(max-width:600px){.hero{padding:24px}.hero h1{font-size:29px}.wrap{padding:14px}.top{padding:13px 15px}}
-</style>
+  <title>My Website</title>
+  <style>
+    img {
+      width: 250px;
+      height: auto;
+      border-radius: 15px;
+    }
+  </style>
 </head>
 <body>
-<header class="top"><div class="brand">◉ Project Global</div><div id="topUser" class="small muted">Meet beyond borders</div></header>
-<main class="wrap">
-<section id="setup" class="panel">
-<h2>Connect your free database</h2><p class="muted">Create a Supabase project, run the included SQL file, then add your project URL and publishable key below.</p>
-<label class="field">Supabase project URL<input id="sbUrl" placeholder="https://your-project.supabase.co"></label>
-<label class="field">Supabase publishable key<input id="sbKey" placeholder="sb_publishable_..."></label>
-<button class="btn" id="connect">Connect</button>
-<p class="small muted">For this starter, the settings are saved only in this browser. Never enter a service-role key or database password here.</p>
-</section>
-<section id="auth" class="panel hidden">
-<h2 id="authTitle">Create your account</h2>
-<form id="authForm">
-<label class="field">Email<input id="email" type="email" required></label>
-<label class="field">Password<input id="password" type="password" minlength="8" required></label>
-<button class="btn" id="authSubmit">Create account</button>
-</form>
-<p id="authNotice" class="small muted"></p>
-<button class="btn secondary" id="toggleAuth">I already have an account</button>
-</section>
-<section id="profile" class="panel hidden">
-<h2>Build your profile</h2>
-<form id="profileForm">
-<label class="field">Display name<input id="displayName" maxlength="40" required></label>
-<label class="field">Username<input id="username" minlength="3" maxlength="20" required placeholder="curious_mind"></label>
-<label class="field">Country<select id="country"><option>India</option><option>Japan</option><option>United States</option><option>United Kingdom</option><option>Brazil</option><option>France</option><option>Germany</option><option>Canada</option><option>Australia</option><option>South Africa</option><option>Other</option></select></label>
-<p><b>Choose your interests</b></p><div id="interestChoices"></div>
-<button class="btn">Find my community</button>
-</form><p id="profileNotice" class="small muted"></p>
-</section>
-<section id="app" class="hidden">
-<div class="hero"><p class="small">A SMALLER WORLD STARTS HERE</p><h1>Good conversations have no borders.</h1><p>Meet people through shared interests and discover perspectives around the world.</p></div>
-<div class="tabs"><button data-page="discover" class="active">Discover</button><button data-page="communities">Communities</button><button data-page="people">People</button><button data-page="chat">Messages</button><button id="logout">Sign out</button></div>
-<div id="notice" class="note hidden"></div>
-<section id="discoverPage" class="panel"><h2>Your global space</h2><p class="muted">Your communities and people from around the world.</p><div id="homeGroups" class="grid"></div></section>
-<section id="communitiesPage" class="panel hidden"><h2>Your communities</h2><div id="groups" class="grid"></div></section>
-<section id="peoplePage" class="panel hidden"><h2>Discover people</h2><input id="peopleSearch" placeholder="Search name, country or interest" style="padding:12px;width:100%;border:1px solid #dce3ee;border-radius:9px"><div id="people" class="grid" style="margin-top:14px"></div></section>
-<section id="chatPage" class="panel hidden"><h2 id="chatTitle">Choose a community</h2><div id="chatGroups" class="grid"></div><div id="chatBox" class="hidden"><div id="messages" class="chat"></div><form id="sendForm" class="row" style="margin-top:10px"><input id="message" maxlength="2000" placeholder="Write a message..." required><button class="btn">Send</button></form><label class="field">Share a photo<input id="photo" type="file" accept="image/*"></label></div></section>
-</section>
-</main>
-<script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-const $=id=>document.getElementById(id);
-const interests=["Technology","Gaming","Music","Art & Design","Books","Movies","Science","Travel","Sports","Photography","Languages","Startups","Nature","Food"];
-let sb=null,user=null,profile=null,activeGroup=null,channel=null,signup=true,chosen=["Technology","Music"];
-function show(id){["setup","auth","profile","app"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
-function note(t){$("notice").textContent=t;$("notice").classList.remove("hidden")}
-function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function interestUI(){$("interestChoices").innerHTML=interests.map(i=>`<button type="button" class="chip ${chosen.includes(i)?"on":""}" data-interest="${esc(i)}">${esc(i)}</button>`).join("");$("interestChoices").querySelectorAll("button").forEach(b=>b.onclick=()=>{let i=b.dataset.interest;chosen=chosen.includes(i)?chosen.filter(x=>x!==i):[...chosen,i];interestUI()})}
-$("connect").onclick=async()=>{let u=$("sbUrl").value.trim(),k=$("sbKey").value.trim();if(!u||!k)return alert("Enter both Supabase values.");sb=createClient(u,k);$("setup").classList.add("hidden");show("auth");await restore()};
-$("toggleAuth").onclick=()=>{signup=!signup;$("authTitle").textContent=signup?"Create your account":"Welcome back";$("authSubmit").textContent=signup?"Create account":"Sign in";$("toggleAuth").textContent=signup?"I already have an account":"Create an account"};
-$("authForm").onsubmit=async e=>{e.preventDefault();$("authSubmit").disabled=true;let email=$("email").value,password=$("password").value;let r=signup?await sb.auth.signUp({email,password}):await sb.auth.signInWithPassword({email,password});$("authSubmit").disabled=false;if(r.error){$("authNotice").textContent=r.error.message;return}if(!r.data.session){$("authNotice").textContent="Check your email to confirm your account, then sign in.";return}user=r.data.user;await afterLogin()};
-async function restore(){let {data}=await sb.auth.getSession();if(data.session){user=data.session.user;await afterLogin()}}
-async function afterLogin(){let {data,error}=await sb.from("profiles").select("*").eq("id",user.id).maybeSingle();if(error){$("authNotice").textContent=error.message;return}if(!data){show("profile");interestUI()}else{profile=data;show("app");$("topUser").textContent="@"+profile.username+" · "+profile.country;await loadGroups();await loadPeople()}}
-$("profileForm").onsubmit=async e=>{e.preventDefault();let username=$("username").value.trim().toLowerCase().replace(/[^a-z0-9_]/g,"");if(chosen.length===0)return $("profileNotice").textContent="Choose at least one interest.";let p={id:user.id,username,display_name:$("displayName").value.trim(),country:$("country").value,interests:chosen};let {error}=await sb.from("profiles").upsert(p);if(error)return $("profileNotice").textContent=error.message;let m=await sb.rpc("join_interest_group",{chosen_interest:chosen[0]});if(m.error)return $("profileNotice").textContent=m.error.message;await afterLogin();await openGroup(m.data)};
-let groups=[];
-async function loadGroups(){let {data,error}=await sb.from("group_members").select("group_id,groups(id,name,interest)").eq("user_id",user.id);if(error)return note(error.message);groups=(data||[]).map(x=>x.groups).filter(Boolean);renderGroups()}
-function renderGroups(){let html=groups.map(g=>`<button class="item" data-group="${g.id}"><b>${esc(g.name)}</b><p class="muted">${esc(g.interest)} · interest community</p></button>`).join("")||"<p class='muted'>No groups yet.</p>";$("groups").innerHTML=html;$("homeGroups").innerHTML=html;$("chatGroups").innerHTML=html;document.querySelectorAll("[data-group]").forEach(b=>b.onclick=()=>openGroup(b.dataset.group))}
-async function loadPeople(){let {data,error}=await sb.from("profiles").select("id,username,display_name,country,interests").neq("id",user.id).limit(80);if(error)return;let people=data||[];let render=()=>{$("people").innerHTML=people.filter(p=>(p.display_name+" "+p.username+" "+p.country+" "+(p.interests||[]).join(" ")).toLowerCase().includes($("peopleSearch").value.toLowerCase())).map(p=>`<article class="item"><b>${esc(p.display_name)}</b><p class="muted">@${esc(p.username)} · ${esc(p.country)}</p><p class="small">${(p.interests||[]).map(esc).join(" · ")}</p></article>`).join("")||"<p class='muted'>No members found.</p>"};$("peopleSearch").oninput=render;render()}
-async function openGroup(id){let g=groups.find(x=>x.id===id);if(!g){let r=await sb.from("groups").select("*").eq("id",id).single();g=r.data}if(!g)return;activeGroup=g;$("chatTitle").textContent=g.name;$("chatBox").classList.remove("hidden");await loadMessages();if(channel)sb.removeChannel(channel);channel=sb.channel("room-"+id).on("postgres_changes",{event:"INSERT",schema:"public",table:"messages",filter:"group_id=eq."+id},payload=>addMessage(payload.new)).subscribe()}
-async function loadMessages(){let {data,error}=await sb.from("messages").select("id,content,image_url,sender_id,created_at").eq("group_id",activeGroup.id).order("created_at").limit(100);if(error)return note(error.message);$("messages").innerHTML="";(data||[]).forEach(addMessage)}
-function addMessage(m){let el=document.createElement("div");el.className="msg "+(m.sender_id===user.id?"mine":"");let label=document.createElement("div");label.textContent=(m.sender_id===user.id?"You: ":"Member: ")+m.content;el.appendChild(label);if(m.image_url){let img=document.createElement("img");img.src=m.image_url;img.alt="Shared community photo";img.style="display:block;max-width:220px;max-height:180px;object-fit:cover;border-radius:8px;margin-top:8px";el.appendChild(img)}$("messages").appendChild(el);$("messages").scrollTop=$("messages").scrollHeight}
-$("sendForm").onsubmit=async e=>{e.preventDefault();if(!activeGroup)return;let content=$("message").value.trim();if(!content)return;$("message").value="";let {error}=await sb.from("messages").insert({group_id:activeGroup.id,sender_id:user.id,content});if(error)note(error.message)};
-$("photo").onchange=async e=>{let f=e.target.files[0];if(!f||!activeGroup)return;if(!f.type.startsWith("image/")||f.size>5*1024*1024){note("Choose an image under 5 MB.");return}let path=user.id+"/"+crypto.randomUUID()+"-"+f.name.replace(/[^a-zA-Z0-9._-]/g,"");let up=await sb.storage.from("community-photos").upload(path,f);if(up.error)return note(up.error.message);let url=sb.storage.from("community-photos").getPublicUrl(path).data.publicUrl;let {error}=await sb.from("messages").insert({group_id:activeGroup.id,sender_id:user.id,content:"Shared a photo",image_url:url});if(error)note(error.message);else note("Photo shared with this group.")};
-document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b));["discover","communities","people","chat"].forEach(p=>$(p+"Page").classList.toggle("hidden",p!==b.dataset.page))});
-$("logout").onclick=async()=>{if(channel)sb.removeChannel(channel);await sb.auth.signOut();user=null;profile=null;show("auth")};
-</script>
-</body></html>
+
+  <h1>My Photo</h1>
+
+  <img src="myphoto.jpg" alt="My photo">
+
+</body>
+</html>
