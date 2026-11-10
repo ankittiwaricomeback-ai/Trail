@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,43 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Our Class Portal</title>
 <style>
-:root{--b:#1e5bd8;--bd:#0b2a6b;--bl:#e8f0ff;--bg:#f3f7ff;--tx:#14213d;--mu:#5b6b8c;--ok:#1a9d5b;--wr:#d97706;--r:16px;--sh:0 6px 20px rgba(20,60,140,.12)}
+:root{--b:#1e5bd8;--bd:#0b2a6b;--bl:#e8f0ff;--bg:#f3f7ff;--tx:#14213d;--mu:#5b6b8c;--ok:#1a9d5b;--wr:#d97706;--sh:0 6px 20px rgba(20,60,140,.12)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
 button{font:inherit;cursor:pointer;border:0}
 .hide{display:none!important}
+#err{position:fixed;left:0;right:0;top:0;z-index:200;background:#c62828;color:#fff;padding:8px 12px;font-size:13px}
 /* INTRO */
 #intro{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 40%,#12307a,#050d26);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;transition:opacity .8s;overflow:hidden}
 #intro.out{opacity:0;pointer-events:none}
 .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#bcd4ff;box-shadow:0 0 8px #8ab4ff;opacity:0;animation:tw 3s ease-in-out infinite}
 @keyframes tw{0%,100%{opacity:0}50%{opacity:.9}}
-#ibook{font-size:90px;opacity:0;transform:scale(.4) rotateY(90deg);transition:all 1s;filter:drop-shadow(0 0 25px #6ea0ff)}
-#ibook.show{opacity:1;transform:scale(1) rotateY(0)}
+#ibook{font-size:90px;opacity:0;transform:scale(.4);transition:all 1s;filter:drop-shadow(0 0 25px #6ea0ff)}
+#ibook.show{opacity:1;transform:scale(1)}
 #ibook.open{animation:pop .8s}
-@keyframes pop{0%{transform:scale(.8) rotateY(-80deg)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes pop{0%{transform:scale(.7) rotate(-12deg)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
 .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#ffe9a8;box-shadow:0 0 10px #ffd86b;animation:fly 2s ease-out forwards}
 @keyframes fly{to{transform:translate(var(--x),var(--y));opacity:0}}
 #ititle{font-size:clamp(26px,7vw,48px);font-weight:800;letter-spacing:3px;margin-top:20px;opacity:0;transform:translateY(14px);transition:all 1s}
 #itag{margin-top:10px;font-size:clamp(14px,3.6vw,20px);color:#a9c4ff;opacity:0;transition:opacity 1s}
 #ititle.show,#itag.show{opacity:1;transform:none}
-#skip{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);color:#fff;padding:9px 16px;border-radius:20px;z-index:2}
+#skip{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:20px;z-index:5}
 /* LOGIN */
 #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff,#dbe8ff);position:relative;overflow:hidden}
 .blob{position:absolute;border-radius:50%;background:rgba(30,91,216,.12);animation:fl 9s ease-in-out infinite}
-.blob:nth-child(1){width:300px;height:300px;top:-80px;left:-80px}
-.blob:nth-child(2){width:220px;height:220px;bottom:-60px;right:-40px;animation-delay:-4s}
+.blob.b1{width:300px;height:300px;top:-80px;left:-80px}
+.blob.b2{width:220px;height:220px;bottom:-60px;right:-40px;animation-delay:-4s}
 @keyframes fl{50%{transform:translate(30px,40px) scale(1.1)}}
 .lbox{position:relative;background:#fff;padding:32px 26px;border-radius:22px;box-shadow:var(--sh);width:100%;max-width:380px;text-align:center;transition:all .5s}
 .lbox.go{opacity:0;transform:scale(.95) translateY(-20px)}
 .lbox h1{color:var(--bd);font-size:26px;margin:6px 0}
 .lbox p{color:var(--mu);margin-bottom:18px}
 .pw{position:relative}
-.pw input{width:100%;padding:14px 48px 14px 16px;border:2px solid #d3e0fa;border-radius:12px;font-size:16px;outline:0;transition:border .2s}
+.pw input{width:100%;padding:14px 48px 14px 16px;border:2px solid #d3e0fa;border-radius:12px;font-size:16px;outline:0}
 .pw input:focus{border-color:var(--b)}
 .pw button{position:absolute;right:6px;top:6px;bottom:6px;width:40px;background:none;font-size:18px}
-.btn{background:var(--b);color:#fff;padding:13px 22px;border-radius:12px;font-weight:600;transition:transform .15s,background .2s}
+.btn{background:var(--b);color:#fff;padding:13px 22px;border-radius:12px;font-weight:600}
 .btn:active{transform:scale(.96)}
-.btn:hover{background:#174bb5}
 .btn.lt{background:var(--bl);color:var(--b)}
 #lbtn{width:100%;margin-top:14px}
 #lerr{color:#c62828;font-size:14px;min-height:20px;margin-top:10px}
@@ -53,7 +52,7 @@ header{background:linear-gradient(135deg,var(--bd),var(--b));color:#fff;padding:
 header h1{font-size:20px}
 #logout{background:rgba(255,255,255,.18);color:#fff;padding:8px 14px;border-radius:10px}
 nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(20,60,140,.08)}
-nav button{flex:none;background:var(--bl);color:var(--b);padding:10px 14px;border-radius:12px;font-weight:600;transition:all .2s}
+nav button{flex:none;background:var(--bl);color:var(--b);padding:10px 14px;border-radius:12px;font-weight:600}
 nav button.on{background:var(--b);color:#fff}
 main{max-width:1000px;margin:0 auto;padding:16px}
 section{display:none}
@@ -61,9 +60,8 @@ section.on{display:block;animation:fi .35s}
 @keyframes fi{from{opacity:0;transform:translateY(10px)}}
 h2{color:var(--bd);margin:6px 0 14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.card{background:#fff;border-radius:var(--r);padding:16px;box-shadow:var(--sh);transition:transform .2s}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--sh);transition:transform .2s}
 .card:hover{transform:translateY(-3px)}
-.card:active{transform:scale(.98)}
 .card h3{color:var(--bd);margin-bottom:6px;font-size:17px}
 .card p,.meta{color:var(--mu);font-size:14px;line-height:1.5}
 .card.imp{border-left:5px solid var(--wr)}
@@ -76,55 +74,55 @@ h2{color:var(--bd);margin:6px 0 14px}
 .acts a,.acts button{text-decoration:none;font-size:14px;padding:9px 14px;border-radius:10px;font-weight:600;background:var(--b);color:#fff}
 .acts .lt{background:var(--bl);color:var(--b)}
 .search{width:100%;padding:13px 16px;border:2px solid #d3e0fa;border-radius:12px;font-size:16px;margin-bottom:14px;outline:0}
-.search:focus{border-color:var(--b)}
 .roll{display:inline-block;background:var(--bl);color:var(--b);font-weight:700;border-radius:10px;padding:4px 10px;font-size:13px}
 .empty{color:var(--mu);padding:20px;text-align:center}
 /* BOOK */
 #bookwrap{display:flex;flex-direction:column;align-items:center}
-#book{position:relative;width:100%;max-width:900px;height:min(72vh,560px);perspective:1800px;touch-action:pan-y;user-select:none}
-.spread{position:absolute;inset:0;display:flex;border-radius:10px;box-shadow:0 18px 40px rgba(10,30,80,.35),0 0 0 6px #123a8f;background:#123a8f;overflow:hidden}
-.pg{flex:1;background:#fffdf7 linear-gradient(90deg,rgba(0,0,0,.07),transparent 8%);padding:22px 20px;overflow:auto;position:relative}
-.pg.l{background:#fffdf7 linear-gradient(270deg,rgba(0,0,0,.12),transparent 10%)}
+#book{position:relative;width:100%;max-width:900px;height:min(74vh,580px);perspective:2000px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.spread{position:absolute;inset:0;display:flex;background:#123a8f;border-radius:10px;box-shadow:0 18px 40px rgba(10,30,80,.35);padding:6px;transform-style:preserve-3d}
+.pg{flex:1;height:100%;background:#fffdf7;padding:22px 20px 30px;overflow:auto;position:relative}
+.pg.r{border-radius:0 6px 6px 0;background:linear-gradient(90deg,rgba(0,0,0,.1),transparent 7%),#fffdf7}
+.pg.l{border-radius:6px 0 0 6px;background:linear-gradient(270deg,rgba(0,0,0,.14),transparent 9%),#fffdf7}
+.pg.only{border-radius:6px}
+.pg.blank{background:#123a8f}
 .pg h3{color:var(--bd);font-family:Georgia,serif;font-size:22px;margin-bottom:10px}
 .pg p{font-family:Georgia,serif;line-height:1.65;font-size:16px;white-space:pre-line;margin-bottom:12px}
 .pg figure{margin:10px 0;text-align:center}
 .pg img{max-width:100%;max-height:300px;object-fit:contain;border-radius:6px;box-shadow:0 3px 10px rgba(0,0,0,.25);background:#eee}
 .pg figcaption{font-size:13px;color:var(--mu);font-style:italic;margin-top:6px}
 .pg .num{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:12px;color:#9aa6bd}
-.pg.cover{background:linear-gradient(135deg,#1e5bd8,#0b2a6b);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.pg.cover{background:linear-gradient(135deg,#1e5bd8,#0b2a6b);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .pg.cover h3,.pg.cover p{color:#fff}
 .pg.cover img{max-height:55%;margin-bottom:12px}
-.flip{position:absolute;top:0;right:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .7s ease-in-out;z-index:3}
-.flip>div{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;box-shadow:0 0 25px rgba(0,0,0,.3)}
+.flip{position:absolute;top:6px;bottom:6px;width:calc(50% - 6px);transform-style:preserve-3d;transition:transform .7s ease-in-out;z-index:3}
+.flip.fw{right:6px;transform-origin:left center}
+.flip.bw{left:6px;transform-origin:right center}
+.flip>div{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:#fffdf7}
 .flip>.bk{transform:rotateY(180deg)}
-.flip.go{transform:rotateY(-180deg)}
-.flip.rev{right:auto;left:0;transform-origin:right center}
-.flip.rev.go{transform:rotateY(180deg)}
-.flip.rev>.bk{transform:rotateY(-180deg)}
+.flip.fw.go{transform:rotateY(-180deg)}
+.flip.bw.go{transform:rotateY(180deg)}
 .turn{animation:tn .45s}
-@keyframes tn{from{opacity:0;transform:rotateY(-35deg)}}
+@keyframes tn{from{opacity:0;transform:rotateY(-30deg)}}
 .bctl{display:flex;gap:14px;align-items:center;margin-top:16px}
-#bind{color:var(--mu);font-weight:600;min-width:110px;text-align:center}
+#bind{color:var(--mu);font-weight:600;min-width:120px;text-align:center}
 .hint{color:var(--mu);font-size:13px;margin-top:8px;text-align:center}
-@media(max-width:759px){#book{height:min(75vh,600px)}}
 footer{text-align:center;padding:26px 16px;color:var(--mu);font-size:14px;line-height:1.8}
 footer b{color:var(--bd)}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
 </style>
 </head>
 <body>
+<div id="err" class="hide"></div>
 
-<!-- INTRO (plays once per browser) -->
 <div id="intro">
-  <button id="skip">Skip intro</button>
+  <button id="skip" type="button">Skip intro</button>
   <div id="ibook">📕</div>
   <div id="ititle">OUR CLASS PORTAL</div>
   <div id="itag">Learn · Prepare · Achieve</div>
 </div>
 
-<!-- LOGIN -->
 <div id="login" class="hide">
-  <div class="blob"></div><div class="blob"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
   <div class="lbox" id="lbox">
     <div style="font-size:46px">📖</div>
     <h1>Our Class Portal</h1>
@@ -134,20 +132,19 @@ footer b{color:var(--bd)}
       <button id="eye" type="button" aria-label="Show or hide password">👁️</button>
     </div>
     <div id="lerr"></div>
-    <button class="btn" id="lbtn">Log in</button>
+    <button class="btn" id="lbtn" type="button">Log in</button>
   </div>
 </div>
 
-<!-- APP -->
 <div id="app" class="hide">
-  <header><h1>📖 Our Class Portal</h1><button id="logout">Log out</button></header>
+  <header><h1>📖 Our Class Portal</h1><button id="logout" type="button">Log out</button></header>
   <nav id="nav">
-    <button data-s="notice" class="on">📢 Notice</button>
-    <button data-s="khan">🎓 Khan Academy</button>
-    <button data-s="exam">🗓️ Exams</button>
-    <button data-s="notes">📝 Notes</button>
-    <button data-s="students">👥 Students</button>
-    <button data-s="story">📚 Story Book</button>
+    <button type="button" data-s="notice" class="on">📢 Notice</button>
+    <button type="button" data-s="khan">🎓 Khan Academy</button>
+    <button type="button" data-s="exam">🗓️ Exams</button>
+    <button type="button" data-s="notes">📝 Notes</button>
+    <button type="button" data-s="students">👥 Students</button>
+    <button type="button" data-s="story">📚 Story Book</button>
   </nav>
   <main>
     <section id="notice" class="on"><h2>📢 Important Notice</h2><div class="grid" id="noticeList"></div></section>
@@ -158,7 +155,7 @@ footer b{color:var(--bd)}
     <section id="story"><h2>📚 Story Book</h2>
       <div id="bookwrap">
         <div id="book"></div>
-        <div class="bctl"><button class="btn lt" id="prev">◀ Back</button><span id="bind"></span><button class="btn" id="next">Next ▶</button></div>
+        <div class="bctl"><button class="btn lt" id="prev" type="button">◀ Back</button><span id="bind"></span><button class="btn" id="next" type="button">Next ▶</button></div>
         <div class="hint">Swipe or tap the left / right side of the book to turn pages</div>
       </div>
     </section>
@@ -170,75 +167,62 @@ footer b{color:var(--bd)}
     Teacher: Shri Govind Raut
   </footer>
 </div>
-    img {
-      width: 250px;
-      height: auto;
-      border-radius: 15px;
-    }
-  </style>
-</head>
-<body>
 
-  <h1>My Photo</h1>
-
-  <img src="17942515697403237642678493718737.jpg" alt="My photo">
 <script>
 /* =====================================================================
-   1. YOUR DATA — edit only this part. Keep the commas and quotes.
+   1. YOUR DATA — edit only this part. Keep every comma and quote mark.
    The entries below are SAMPLES. Replace them with your real data.
    ===================================================================== */
 
-// Demo password. NOTE: anything in frontend code can be read by anyone who
-// views the page source, so this is NOT real security.
+// Demo password (NOT real security: anyone can read it in the page source).
 // >>> Put your existing password between the quotes:
-const PASSWORD = "class123";
+var PASSWORD = "class123";
 
-// IMPORTANT NOTICES.  important:true highlights the card.
-const notices = [
+// IMPORTANT NOTICES. important:true highlights the card.
+var notices = [
   { title: "Welcome to Our Class Portal", date: "2026-11-01", text: "Replace this with your real notice.", important: true },
-  { title: "Sample notice", date: "2026-11-05", text: "Add more notices by copying one line.", important: false }
+  { title: "Sample notice", date: "2026-11-05", text: "Add more notices by copying one block.", important: false }
 ];
 
 // STUDENTS — name and roll number only.
-const students = [
+var students = [
   { name: "Sample Student A", roll: "1" },
   { name: "Sample Student B", roll: "2" }
 ];
 
-// KHAN ACADEMY usernames (name must match the student).
-const khan = [
+// KHAN ACADEMY usernames.
+var khan = [
   { name: "Sample Student A", username: "sample_a" },
   { name: "Sample Student B", username: "sample_b" }
 ];
 
-// EXAMS — date format is YYYY-MM-DD. Day name is worked out automatically.
-const exams = [
+// EXAMS — date format is YYYY-MM-DD. The day name is worked out automatically.
+var exams = [
   { subject: "Sample Subject", date: "2026-12-01", details: "Time and room details here." },
   { subject: "Another Subject", date: "2026-12-03", details: "Chapters 1 to 5." }
 ];
 
-// NOTES (PDF files go in the notes/ folder)
-const notes = [
+// NOTES — PDF files go in the notes/ folder.
+var notes = [
   { subject: "Class Notes", description: "Notes PDF for the class.", file: "notes/DOC-20261020-WA0094.pdf" }
 ];
 
 /* =====================================================================
    2. STORY BOOK — add photos and text here.
    - Upload photos into the  images/  folder on GitHub.
-   - Put the file name in  image: "images/yourphoto.jpg"
    - ONE photo:   image: "images/photo1.jpg", caption: "Text under photo"
    - MANY photos: images: [ {src:"images/a.jpg", caption:"First"}, {src:"images/b.jpg", caption:"Second"} ]
-   - No photo? Just leave image and images out.
-   - To add a page: copy one { ... }, paste it with a comma after the previous one.
+   - No photo? Leave out the image lines.
+   - New page: copy one { ... } block, put a comma after the one before it.
    - File names are case-sensitive: Photo1.JPG is not photo1.jpg
    ===================================================================== */
-const bookCover = {
+var bookCover = {
   title: "Our Class Story",
   text: "Memories we will never forget",
   image: "images/book-cover.jpg"      // delete this line if you have no cover photo
 };
 
-const bookPages = [
+var bookPages = [
   {
     title: "Our Memories",
     text: "A special moment from our class.",
@@ -268,55 +252,27 @@ const bookPages = [
 /* =====================================================================
    3. CODE — you do not need to edit below this line.
    ===================================================================== */
-const $ = id => document.getElementById(id);
-const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const fmt = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
-const day = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { weekday: "long" });
-
-/* ---------- Intro ---------- */
-(function intro() {
-  const el = $("intro");
-  let seen = false;
-  try { seen = localStorage.getItem("ocp_intro") === "1"; } catch (e) {}
-  if (seen) { el.classList.add("hide"); showLogin(); return; }
-  for (let i = 0; i < 40; i++) {
-    const s = document.createElement("div");
-    s.className = "star";
-    s.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 3}s`;
-    el.appendChild(s);
-  }
-  const timers = [];
-  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
-  let done = false;
-  function finish() {
-    if (done) return; done = true;
-    timers.forEach(clearTimeout);
-    try { localStorage.setItem("ocp_intro", "1"); } catch (e) {}
-    el.classList.add("out");
-    showLogin();
-    setTimeout(() => el.classList.add("hide"), 900);
-  }
-  $("skip").onclick = finish;
-  at(800, () => $("ibook").classList.add("show"));
-  at(2200, () => { const b = $("ibook"); b.textContent = "📖"; b.classList.add("open"); });
-  at(2700, () => {
-    for (let i = 0; i < 26; i++) {
-      const p = document.createElement("div");
-      p.className = "spark";
-      const a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 160;
-      p.style.cssText = `left:50%;top:42%;--x:${Math.cos(a) * d}px;--y:${Math.sin(a) * d - 60}px`;
-      el.appendChild(p);
-      setTimeout(() => p.remove(), 2100);
-    }
-  });
-  at(3200, () => $("ititle").classList.add("show"));
-  at(4100, () => $("itag").classList.add("show"));
-  at(5600, finish);
-})();
+window.onerror = function (msg, src, line) {
+  var e = document.getElementById("err");
+  if (e) { e.textContent = "Page error: " + msg + " (line " + line + ")"; e.classList.remove("hide"); }
+};
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+function dt(d) { return new Date(d + "T00:00:00"); }
+function fmt(d) { return dt(d).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }); }
+function dayName(d) { return dt(d).toLocaleDateString(undefined, { weekday: "long" }); }
+function store(kind, key, val) {            // safe localStorage / sessionStorage
+  try {
+    var s = kind === "l" ? window.localStorage : window.sessionStorage;
+    if (val === undefined) return s.getItem(key);
+    if (val === null) s.removeItem(key); else s.setItem(key, val);
+  } catch (e) {}
+  return null;
+}
 
 /* ---------- Login ---------- */
 function showLogin() {
-  if (sessionStorage.getItem("ocp_in") === "1") return enterApp();
+  if (store("s", "ocp_in") === "1") { enterApp(); return; }
   $("login").classList.remove("hide");
 }
 function enterApp() {
@@ -326,23 +282,23 @@ function enterApp() {
 }
 function doLogin() {
   if ($("pass").value === PASSWORD) {
-    sessionStorage.setItem("ocp_in", "1");
+    store("s", "ocp_in", "1");
     $("lerr").textContent = "";
     $("lbox").classList.add("go");
-    setTimeout(() => { enterApp(); $("lbox").classList.remove("go"); $("pass").value = ""; }, 450);
+    setTimeout(function () { enterApp(); $("lbox").classList.remove("go"); $("pass").value = ""; }, 450);
   } else {
     $("lerr").textContent = "Incorrect password. Please try again.";
     $("lbox").classList.remove("shake"); void $("lbox").offsetWidth; $("lbox").classList.add("shake");
   }
 }
 $("lbtn").onclick = doLogin;
-$("pass").addEventListener("keydown", e => { if (e.key === "Enter") doLogin(); });
-$("eye").onclick = () => {
-  const p = $("pass"); const show = p.type === "password";
+$("pass").onkeydown = function (e) { if (e.key === "Enter") doLogin(); };
+$("eye").onclick = function () {
+  var p = $("pass"), show = p.type === "password";
   p.type = show ? "text" : "password"; $("eye").textContent = show ? "🙈" : "👁️";
 };
-$("logout").onclick = () => {
-  sessionStorage.removeItem("ocp_in");
+$("logout").onclick = function () {
+  store("s", "ocp_in", null);
   $("app").classList.add("hide");
   $("login").classList.remove("hide");
   showSec("notice");
@@ -350,47 +306,208 @@ $("logout").onclick = () => {
 
 /* ---------- Navigation ---------- */
 function showSec(id) {
-  document.querySelectorAll("main section").forEach(s => s.classList.toggle("on", s.id === id));
-  document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("on", b.dataset.s === id));
+  var secs = document.querySelectorAll("main section"), btns = document.querySelectorAll("#nav button"), i;
+  for (i = 0; i < secs.length; i++) secs[i].classList.toggle("on", secs[i].id === id);
+  for (i = 0; i < btns.length; i++) btns[i].classList.toggle("on", btns[i].getAttribute("data-s") === id);
   if (id === "story") renderBook();
-  window.scrollTo({ top: 0 });
+  window.scrollTo(0, 0);
 }
-document.querySelectorAll("#nav button").forEach(b => b.onclick = () => showSec(b.dataset.s));
+(function () {
+  var btns = document.querySelectorAll("#nav button");
+  for (var i = 0; i < btns.length; i++) btns[i].onclick = function () { showSec(this.getAttribute("data-s")); };
+})();
 
 /* ---------- Sections ---------- */
 function renderNotices() {
-  const list = notices.slice().sort((a, b) => (b.important - a.important) || String(b.date).localeCompare(String(a.date)));
-  $("noticeList").innerHTML = list.length ? list.map(n => `
-    <div class="card ${n.important ? "imp" : ""}">
-      <span class="tag ${n.important ? "imp" : ""}">${n.important ? "Important" : "Notice"}${n.date ? " · " + fmt(n.date) : ""}</span>
-      <h3>${esc(n.title)}</h3><p>${esc(n.text)}</p></div>`).join("") : '<div class="empty">No notices yet.</div>';
+  var list = notices.slice().sort(function (a, b) { return (b.important ? 1 : 0) - (a.important ? 1 : 0) || String(b.date).localeCompare(String(a.date)); });
+  $("noticeList").innerHTML = list.length ? list.map(function (n) {
+    return '<div class="card' + (n.important ? " imp" : "") + '"><span class="tag' + (n.important ? " imp" : "") + '">' +
+      (n.important ? "Important" : "Notice") + (n.date ? " · " + fmt(n.date) : "") + '</span><h3>' + esc(n.title) + '</h3><p>' + esc(n.text) + '</p></div>';
+  }).join("") : '<div class="empty">No notices yet.</div>';
 }
 function renderKhan() {
-  const q = $("khanQ").value.trim().toLowerCase();
-  const list = khan.filter(k => k.name.toLowerCase().includes(q)).sort((a, b) => a.name.localeCompare(b.name));
-  $("khanList").innerHTML = list.length ? list.map(k => `
-    <div class="card"><h3>${esc(k.name)}</h3><p>Username: <b>${esc(k.username)}</b></p>
-    <div class="acts"><button data-copy="${esc(k.username)}">Copy username</button></div></div>`).join("") : '<div class="empty">No student found.</div>';
+  var q = $("khanQ").value.trim().toLowerCase();
+  var list = khan.filter(function (k) { return k.name.toLowerCase().indexOf(q) > -1; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
+  $("khanList").innerHTML = list.length ? list.map(function (k) {
+    return '<div class="card"><h3>' + esc(k.name) + '</h3><p>Username: <b>' + esc(k.username) + '</b></p><div class="acts"><button type="button" data-copy="' + esc(k.username) + '">Copy username</button></div></div>';
+  }).join("") : '<div class="empty">No student found.</div>';
 }
 function renderExams() {
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const list = exams.slice().sort((a, b) => a.date.localeCompare(b.date));
-  const next = list.find(e => new Date(e.date + "T00:00:00") >= today);
-  $("examList").innerHTML = list.length ? list.map(e => {
-    const past = new Date(e.date + "T00:00:00") < today;
-    const st = past ? '<span class="tag past">Completed</span>' : (e === next ? '<span class="tag up">Next exam</span>' : '<span class="tag">Upcoming</span>');
-    return `<div class="card ${past ? "past" : ""}">${st}<h3>${esc(e.subject)}</h3>
-      <p><b>${fmt(e.date)}</b> · ${day(e.date)}</p><p>${esc(e.details)}</p></div>`;
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var list = exams.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+  var next = null, i;
+  for (i = 0; i < list.length; i++) if (dt(list[i].date) >= today) { next = list[i]; break; }
+  $("examList").innerHTML = list.length ? list.map(function (e) {
+    var past = dt(e.date) < today;
+    var st = past ? '<span class="tag past">Completed</span>' : (e === next ? '<span class="tag up">Next exam</span>' : '<span class="tag">Upcoming</span>');
+    return '<div class="card' + (past ? " past" : "") + '">' + st + '<h3>' + esc(e.subject) + '</h3><p><b>' + fmt(e.date) + '</b> · ' + dayName(e.date) + '</p><p>' + esc(e.details) + '</p></div>';
   }).join("") : '<div class="empty">No exams added.</div>';
 }
 function renderNotes() {
-  $("notesList").innerHTML = notes.length ? notes.map(n => `
-    <div class="card"><h3>📄 ${esc(n.subject)}</h3><p>${esc(n.description)}</p>
-    <div class="acts"><a href="${esc(n.file)}" target="_blank" rel="noopener">Open PDF</a>
-    <a class="lt" href="${esc(n.file)}" download>Download</a></div></div>`).join("") : '<div class="empty">No notes yet.</div>';
+  $("notesList").innerHTML = notes.length ? notes.map(function (n) {
+    return '<div class="card"><h3>📄 ' + esc(n.subject) + '</h3><p>' + esc(n.description) + '</p><div class="acts"><a href="' + esc(n.file) +
+      '" target="_blank" rel="noopener">Open PDF</a><a class="lt" href="' + esc(n.file) + '" download>Download</a></div></div>';
+  }).join("") : '<div class="empty">No notes yet.</div>';
 }
 function renderStudents() {
-  const q = $("stuQ").value.trim().toLowerCase();
-  const list = students.filter(s => s.name.toLowerCase().includes(q) || String(s.roll).toLowerCase().includes(q))
-    .sort((a, b) => a.name.localeCompare(b.name));
-  $("stuList
+  var q = $("stuQ").value.trim().toLowerCase();
+  var list = students.filter(function (s) { return s.name.toLowerCase().indexOf(q) > -1 || String(s.roll).toLowerCase().indexOf(q) > -1; })
+    .sort(function (a, b) { return a.name.localeCompare(b.name); });
+  $("stuList").innerHTML = list.length ? list.map(function (s) {
+    return '<div class="card"><h3>' + esc(s.name) + '</h3><span class="roll">Roll No. ' + esc(s.roll) + '</span></div>';
+  }).join("") : '<div class="empty">No student found.</div>';
+}
+function renderAll() { renderNotices(); renderKhan(); renderExams(); renderNotes(); renderStudents(); }
+$("khanQ").oninput = renderKhan;
+$("stuQ").oninput = renderStudents;
+$("khanList").onclick = function (e) {
+  var b = e.target.closest ? e.target.closest("[data-copy]") : null;
+  if (!b) return;
+  var t = b.getAttribute("data-copy");
+  function ok() { b.textContent = "Copied ✓"; setTimeout(function () { b.textContent = "Copy username"; }, 1400); }
+  function fb() {
+    var i = document.createElement("textarea"); i.value = t; document.body.appendChild(i); i.select();
+    try { document.execCommand("copy"); ok(); } catch (x) {} document.body.removeChild(i);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
+};
+
+/* ---------- Story Book ---------- */
+var allPages = [{ cover: true, title: bookCover.title, text: bookCover.text, image: bookCover.image }].concat(bookPages);
+var sp = 0, pi = 0, busy = false, mode = null;   // sp = spread number (wide screens), pi = page number (phones)
+function wide() { return window.innerWidth >= 760; }
+function lastSp() { return Math.floor(allPages.length / 2); }
+
+function pageHTML(p, n, cls) {
+  if (!p) return '<div class="pg blank ' + cls + '"></div>';
+  var imgs = p.images ? p.images : (p.image ? [{ src: p.image, caption: p.caption }] : []);
+  var figs = imgs.map(function (i) {
+    return '<figure><img src="' + esc(i.src) + '" alt="' + esc(i.caption || p.title || "") + '">' +
+      (i.caption && !p.cover ? '<figcaption>' + esc(i.caption) + '</figcaption>' : '') + '</figure>';
+  }).join("");
+  if (p.cover) return '<div class="pg cover ' + cls + '">' + figs + '<h3>' + esc(p.title) + '</h3><p>' + esc(p.text) + '</p></div>';
+  return '<div class="pg ' + cls + '"><h3>' + esc(p.title) + '</h3>' + (p.text ? '<p>' + esc(p.text) + '</p>' : '') + figs + '<div class="num">' + n + '</div></div>';
+}
+function spreadParts(s) {
+  var li = 2 * s - 1, ri = 2 * s;
+  return {
+    l: s === 0 ? '<div class="pg blank l"></div>' : pageHTML(allPages[li], li, "l"),
+    r: ri < allPages.length ? pageHTML(allPages[ri], ri, "r") : '<div class="pg r"></div>'
+  };
+}
+function updateInfo() {
+  var total = allPages.length - 1, w = wide();
+  $("bind").textContent = w ? (sp === 0 ? "Cover" : "Pages " + (2 * sp - 1) + "–" + Math.min(2 * sp, total) + " of " + total)
+                            : (pi === 0 ? "Cover" : "Page " + pi + " of " + total);
+  var atStart = w ? sp <= 0 : pi <= 0, atEnd = w ? sp >= lastSp() : pi >= allPages.length - 1;
+  $("prev").style.opacity = atStart ? .4 : 1; $("next").style.opacity = atEnd ? .4 : 1;
+}
+function renderBook() {
+  var w = wide();
+  if (mode !== null && mode !== w) { if (w) sp = Math.ceil(pi / 2); else pi = sp === 0 ? 0 : 2 * sp - 1; }
+  mode = w;
+  if (w) { var h = spreadParts(sp); $("book").innerHTML = '<div class="spread">' + h.l + h.r + '</div>'; }
+  else $("book").innerHTML = '<div class="spread">' + pageHTML(allPages[pi], pi, "only") + '</div>';
+  updateInfo();
+}
+function turn(dir) {            // 1 = forward, -1 = back
+  if (busy) return;
+  var w = wide();
+  if (w ? (dir > 0 ? sp >= lastSp() : sp <= 0) : (dir > 0 ? pi >= allPages.length - 1 : pi <= 0)) return;
+  busy = true;
+  if (!w) {
+    pi += dir; renderBook();
+    $("book").firstChild.classList.add("turn");
+    setTimeout(function () { busy = false; }, 460);
+    return;
+  }
+  var oldP = spreadParts(sp), newP = spreadParts(sp + dir);
+  var spread = $("book").firstChild, f = document.createElement("div");
+  f.className = "flip " + (dir > 0 ? "fw" : "bw");
+  f.innerHTML = '<div>' + (dir > 0 ? oldP.r : oldP.l) + '</div><div class="bk">' + (dir > 0 ? newP.l : newP.r) + '</div>';
+  spread.innerHTML = (dir > 0 ? oldP.l + newP.r : newP.l + oldP.r);   // far page is already the new one
+  spread.appendChild(f);
+  void f.offsetWidth;
+  f.classList.add("go");
+  sp += dir;
+  setTimeout(function () { renderBook(); busy = false; }, 740);
+}
+$("next").onclick = function () { turn(1); };
+$("prev").onclick = function () { turn(-1); };
+
+// images that fail to load show a note instead of a broken icon
+$("book").addEventListener("error", function (e) {
+  var t = e.target;
+  if (t && t.tagName === "IMG") {
+    var d = document.createElement("div"); d.className = "meta"; d.textContent = "Photo not found: " + t.getAttribute("src");
+    if (t.parentNode) t.parentNode.replaceChild(d, t);
+  }
+}, true);
+
+// swipe and tap
+(function () {
+  var b = $("book"), x0 = 0, y0 = 0, t0 = 0, down = false;
+  function start(x, y) { x0 = x; y0 = y; t0 = Date.now(); down = true; }
+  function end(x, y) {
+    if (!down) return; down = false;
+    var dx = x - x0, dy = y - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { turn(dx < 0 ? 1 : -1); return; }
+    if (Math.abs(dx) < 12 && Math.abs(dy) < 12 && Date.now() - t0 < 500) {
+      var r = b.getBoundingClientRect();
+      turn((x - r.left) / r.width > 0.5 ? 1 : -1);
+    }
+  }
+  b.addEventListener("touchstart", function (e) { var t = e.changedTouches[0]; start(t.clientX, t.clientY); }, { passive: true });
+  b.addEventListener("touchend", function (e) { var t = e.changedTouches[0]; end(t.clientX, t.clientY); if (e.cancelable) e.preventDefault(); });
+  b.addEventListener("mousedown", function (e) { start(e.clientX, e.clientY); });
+  b.addEventListener("mouseup", function (e) { end(e.clientX, e.clientY); });
+  document.addEventListener("keydown", function (e) {
+    if (!$("story").classList.contains("on")) return;
+    var tag = document.activeElement ? document.activeElement.tagName : "";
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+    if (e.key === "ArrowRight") turn(1);
+    if (e.key === "ArrowLeft") turn(-1);
+  });
+  window.addEventListener("resize", function () { if ($("story").classList.contains("on") && mode !== wide()) renderBook(); });
+})();
+
+/* ---------- Intro (plays once per browser) ---------- */
+(function () {
+  var el = $("intro"), done = false, timers = [];
+  if (store("l", "ocp_intro") === "1") { el.classList.add("hide"); showLogin(); return; }
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function finish() {
+    if (done) return; done = true;
+    for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
+    store("l", "ocp_intro", "1");
+    el.classList.add("out");
+    showLogin();
+    setTimeout(function () { el.classList.add("hide"); }, 900);
+  }
+  $("skip").onclick = finish;
+  try {
+    for (var i = 0; i < 40; i++) {
+      var s = document.createElement("div");
+      s.className = "star";
+      s.style.left = Math.random() * 100 + "%"; s.style.top = Math.random() * 100 + "%"; s.style.animationDelay = Math.random() * 3 + "s";
+      el.appendChild(s);
+    }
+    at(800, function () { $("ibook").classList.add("show"); });
+    at(2200, function () { var b = $("ibook"); b.textContent = "📖"; b.classList.add("open"); });
+    at(2700, function () {
+      for (var k = 0; k < 26; k++) {
+        var p = document.createElement("div"), a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 160;
+        p.className = "spark"; p.style.left = "50%"; p.style.top = "42%";
+        p.style.setProperty("--x", Math.cos(a) * d + "px"); p.style.setProperty("--y", (Math.sin(a) * d - 60) + "px");
+        el.appendChild(p);
+        (function (q) { setTimeout(function () { if (q.parentNode) q.parentNode.removeChild(q); }, 2100); })(p);
+      }
+    });
+    at(3200, function () { $("ititle").classList.add("show"); });
+    at(4100, function () { $("itag").classList.add("show"); });
+  } catch (e) { finish(); return; }
+  at(5600, finish);
+})();
+</script>
+</body>
+</html>
