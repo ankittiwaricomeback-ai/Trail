@@ -19,3 +19,387 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Class Portal</title>
+<style>
+:root{--b:#1e5bd8;--bd:#0b2a6b;--bl:#e8f0ff;--bg:#f3f7ff;--tx:#14213d;--mu:#5b6b8c;--ok:#1a9d5b;--wr:#d97706;--r:16px;--sh:0 6px 20px rgba(20,60,140,.12)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+button{font:inherit;cursor:pointer;border:0}
+.hide{display:none!important}
+/* INTRO */
+#intro{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 40%,#12307a,#050d26);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;transition:opacity .8s;overflow:hidden}
+#intro.out{opacity:0;pointer-events:none}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#bcd4ff;box-shadow:0 0 8px #8ab4ff;opacity:0;animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:.9}}
+#ibook{font-size:90px;opacity:0;transform:scale(.4) rotateY(90deg);transition:all 1s;filter:drop-shadow(0 0 25px #6ea0ff)}
+#ibook.show{opacity:1;transform:scale(1) rotateY(0)}
+#ibook.open{animation:pop .8s}
+@keyframes pop{0%{transform:scale(.8) rotateY(-80deg)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#ffe9a8;box-shadow:0 0 10px #ffd86b;animation:fly 2s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--x),var(--y));opacity:0}}
+#ititle{font-size:clamp(26px,7vw,48px);font-weight:800;letter-spacing:3px;margin-top:20px;opacity:0;transform:translateY(14px);transition:all 1s}
+#itag{margin-top:10px;font-size:clamp(14px,3.6vw,20px);color:#a9c4ff;opacity:0;transition:opacity 1s}
+#ititle.show,#itag.show{opacity:1;transform:none}
+#skip{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);color:#fff;padding:9px 16px;border-radius:20px;z-index:2}
+/* LOGIN */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff,#dbe8ff);position:relative;overflow:hidden}
+.blob{position:absolute;border-radius:50%;background:rgba(30,91,216,.12);animation:fl 9s ease-in-out infinite}
+.blob:nth-child(1){width:300px;height:300px;top:-80px;left:-80px}
+.blob:nth-child(2){width:220px;height:220px;bottom:-60px;right:-40px;animation-delay:-4s}
+@keyframes fl{50%{transform:translate(30px,40px) scale(1.1)}}
+.lbox{position:relative;background:#fff;padding:32px 26px;border-radius:22px;box-shadow:var(--sh);width:100%;max-width:380px;text-align:center;transition:all .5s}
+.lbox.go{opacity:0;transform:scale(.95) translateY(-20px)}
+.lbox h1{color:var(--bd);font-size:26px;margin:6px 0}
+.lbox p{color:var(--mu);margin-bottom:18px}
+.pw{position:relative}
+.pw input{width:100%;padding:14px 48px 14px 16px;border:2px solid #d3e0fa;border-radius:12px;font-size:16px;outline:0;transition:border .2s}
+.pw input:focus{border-color:var(--b)}
+.pw button{position:absolute;right:6px;top:6px;bottom:6px;width:40px;background:none;font-size:18px}
+.btn{background:var(--b);color:#fff;padding:13px 22px;border-radius:12px;font-weight:600;transition:transform .15s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn:hover{background:#174bb5}
+.btn.lt{background:var(--bl);color:var(--b)}
+#lbtn{width:100%;margin-top:14px}
+#lerr{color:#c62828;font-size:14px;min-height:20px;margin-top:10px}
+.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+/* APP */
+header{background:linear-gradient(135deg,var(--bd),var(--b));color:#fff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:20px}
+#logout{background:rgba(255,255,255,.18);color:#fff;padding:8px 14px;border-radius:10px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px rgba(20,60,140,.08)}
+nav button{flex:none;background:var(--bl);color:var(--b);padding:10px 14px;border-radius:12px;font-weight:600;transition:all .2s}
+nav button.on{background:var(--b);color:#fff}
+main{max-width:1000px;margin:0 auto;padding:16px}
+section{display:none}
+section.on{display:block;animation:fi .35s}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}}
+h2{color:var(--bd);margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:#fff;border-radius:var(--r);padding:16px;box-shadow:var(--sh);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card:active{transform:scale(.98)}
+.card h3{color:var(--bd);margin-bottom:6px;font-size:17px}
+.card p,.meta{color:var(--mu);font-size:14px;line-height:1.5}
+.card.imp{border-left:5px solid var(--wr)}
+.tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;background:var(--bl);color:var(--b);margin-bottom:8px;font-weight:600}
+.tag.imp{background:#fff1dc;color:var(--wr)}
+.tag.up{background:#dff5e8;color:var(--ok)}
+.tag.past{background:#eceff4;color:#7a869a}
+.card.past{opacity:.6}
+.acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.acts a,.acts button{text-decoration:none;font-size:14px;padding:9px 14px;border-radius:10px;font-weight:600;background:var(--b);color:#fff}
+.acts .lt{background:var(--bl);color:var(--b)}
+.search{width:100%;padding:13px 16px;border:2px solid #d3e0fa;border-radius:12px;font-size:16px;margin-bottom:14px;outline:0}
+.search:focus{border-color:var(--b)}
+.roll{display:inline-block;background:var(--bl);color:var(--b);font-weight:700;border-radius:10px;padding:4px 10px;font-size:13px}
+.empty{color:var(--mu);padding:20px;text-align:center}
+/* BOOK */
+#bookwrap{display:flex;flex-direction:column;align-items:center}
+#book{position:relative;width:100%;max-width:900px;height:min(72vh,560px);perspective:1800px;touch-action:pan-y;user-select:none}
+.spread{position:absolute;inset:0;display:flex;border-radius:10px;box-shadow:0 18px 40px rgba(10,30,80,.35),0 0 0 6px #123a8f;background:#123a8f;overflow:hidden}
+.pg{flex:1;background:#fffdf7 linear-gradient(90deg,rgba(0,0,0,.07),transparent 8%);padding:22px 20px;overflow:auto;position:relative}
+.pg.l{background:#fffdf7 linear-gradient(270deg,rgba(0,0,0,.12),transparent 10%)}
+.pg h3{color:var(--bd);font-family:Georgia,serif;font-size:22px;margin-bottom:10px}
+.pg p{font-family:Georgia,serif;line-height:1.65;font-size:16px;white-space:pre-line;margin-bottom:12px}
+.pg figure{margin:10px 0;text-align:center}
+.pg img{max-width:100%;max-height:300px;object-fit:contain;border-radius:6px;box-shadow:0 3px 10px rgba(0,0,0,.25);background:#eee}
+.pg figcaption{font-size:13px;color:var(--mu);font-style:italic;margin-top:6px}
+.pg .num{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:12px;color:#9aa6bd}
+.pg.cover{background:linear-gradient(135deg,#1e5bd8,#0b2a6b);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.pg.cover h3,.pg.cover p{color:#fff}
+.pg.cover img{max-height:55%;margin-bottom:12px}
+.flip{position:absolute;top:0;right:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .7s ease-in-out;z-index:3}
+.flip>div{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;box-shadow:0 0 25px rgba(0,0,0,.3)}
+.flip>.bk{transform:rotateY(180deg)}
+.flip.go{transform:rotateY(-180deg)}
+.flip.rev{right:auto;left:0;transform-origin:right center}
+.flip.rev.go{transform:rotateY(180deg)}
+.flip.rev>.bk{transform:rotateY(-180deg)}
+.turn{animation:tn .45s}
+@keyframes tn{from{opacity:0;transform:rotateY(-35deg)}}
+.bctl{display:flex;gap:14px;align-items:center;margin-top:16px}
+#bind{color:var(--mu);font-weight:600;min-width:110px;text-align:center}
+.hint{color:var(--mu);font-size:13px;margin-top:8px;text-align:center}
+@media(max-width:759px){#book{height:min(75vh,600px)}}
+footer{text-align:center;padding:26px 16px;color:var(--mu);font-size:14px;line-height:1.8}
+footer b{color:var(--bd)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+
+<!-- INTRO (plays once per browser) -->
+<div id="intro">
+  <button id="skip">Skip intro</button>
+  <div id="ibook">📕</div>
+  <div id="ititle">OUR CLASS PORTAL</div>
+  <div id="itag">Learn · Prepare · Achieve</div>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="hide">
+  <div class="blob"></div><div class="blob"></div>
+  <div class="lbox" id="lbox">
+    <div style="font-size:46px">📖</div>
+    <h1>Our Class Portal</h1>
+    <p>Enter the class password to continue</p>
+    <div class="pw">
+      <input id="pass" type="password" placeholder="Password" autocomplete="current-password">
+      <button id="eye" type="button" aria-label="Show or hide password">👁️</button>
+    </div>
+    <div id="lerr"></div>
+    <button class="btn" id="lbtn">Log in</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hide">
+  <header><h1>📖 Our Class Portal</h1><button id="logout">Log out</button></header>
+  <nav id="nav">
+    <button data-s="notice" class="on">📢 Notice</button>
+    <button data-s="khan">🎓 Khan Academy</button>
+    <button data-s="exam">🗓️ Exams</button>
+    <button data-s="notes">📝 Notes</button>
+    <button data-s="students">👥 Students</button>
+    <button data-s="story">📚 Story Book</button>
+  </nav>
+  <main>
+    <section id="notice" class="on"><h2>📢 Important Notice</h2><div class="grid" id="noticeList"></div></section>
+    <section id="khan"><h2>🎓 Khan Academy</h2><input class="search" id="khanQ" placeholder="Search student name…"><div class="grid" id="khanList"></div></section>
+    <section id="exam"><h2>🗓️ Exam Schedule</h2><div class="grid" id="examList"></div></section>
+    <section id="notes"><h2>📝 Notes</h2><div class="grid" id="notesList"></div></section>
+    <section id="students"><h2>👥 Student Directory</h2><input class="search" id="stuQ" placeholder="Search by name or roll number…"><div class="grid" id="stuList"></div></section>
+    <section id="story"><h2>📚 Story Book</h2>
+      <div id="bookwrap">
+        <div id="book"></div>
+        <div class="bctl"><button class="btn lt" id="prev">◀ Back</button><span id="bind"></span><button class="btn" id="next">Next ▶</button></div>
+        <div class="hint">Swipe or tap the left / right side of the book to turn pages</div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <b>Made for our class</b><br>
+    Created by Ankit Tiwari<br>
+    Co-powered by Darpan &amp; Anshu<br>
+    Teacher: Shri Govind Raut
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   1. YOUR DATA — edit only this part. Keep the commas and quotes.
+   The entries below are SAMPLES. Replace them with your real data.
+   ===================================================================== */
+
+// Demo password. NOTE: anything in frontend code can be read by anyone who
+// views the page source, so this is NOT real security.
+// >>> Put your existing password between the quotes:
+const PASSWORD = "class123";
+
+// IMPORTANT NOTICES.  important:true highlights the card.
+const notices = [
+  { title: "Welcome to Our Class Portal", date: "2026-11-01", text: "Replace this with your real notice.", important: true },
+  { title: "Sample notice", date: "2026-11-05", text: "Add more notices by copying one line.", important: false }
+];
+
+// STUDENTS — name and roll number only.
+const students = [
+  { name: "Sample Student A", roll: "1" },
+  { name: "Sample Student B", roll: "2" }
+];
+
+// KHAN ACADEMY usernames (name must match the student).
+const khan = [
+  { name: "Sample Student A", username: "sample_a" },
+  { name: "Sample Student B", username: "sample_b" }
+];
+
+// EXAMS — date format is YYYY-MM-DD. Day name is worked out automatically.
+const exams = [
+  { subject: "Sample Subject", date: "2026-12-01", details: "Time and room details here." },
+  { subject: "Another Subject", date: "2026-12-03", details: "Chapters 1 to 5." }
+];
+
+// NOTES (PDF files go in the notes/ folder)
+const notes = [
+  { subject: "Class Notes", description: "Notes PDF for the class.", file: "notes/DOC-20261020-WA0094.pdf" }
+];
+
+/* =====================================================================
+   2. STORY BOOK — add photos and text here.
+   - Upload photos into the  images/  folder on GitHub.
+   - Put the file name in  image: "images/yourphoto.jpg"
+   - ONE photo:   image: "images/photo1.jpg", caption: "Text under photo"
+   - MANY photos: images: [ {src:"images/a.jpg", caption:"First"}, {src:"images/b.jpg", caption:"Second"} ]
+   - No photo? Just leave image and images out.
+   - To add a page: copy one { ... }, paste it with a comma after the previous one.
+   - File names are case-sensitive: Photo1.JPG is not photo1.jpg
+   ===================================================================== */
+const bookCover = {
+  title: "Our Class Story",
+  text: "Memories we will never forget",
+  image: "images/book-cover.jpg"      // delete this line if you have no cover photo
+};
+
+const bookPages = [
+  {
+    title: "Our Memories",
+    text: "A special moment from our class.",
+    image: "images/photo1.jpg",
+    caption: "Our beautiful memory"
+  },
+  {
+    title: "Special Moments",
+    text: "Memories that we will never forget.",
+    image: "images/photo2.jpg",
+    caption: "A memorable day"
+  },
+  {
+    title: "Together",
+    text: "Many photos on one page.",
+    images: [
+      { src: "images/photo3.jpg", caption: "First photo" },
+      { src: "images/photo4.jpg", caption: "Second photo" }
+    ]
+  },
+  {
+    title: "Only Words",
+    text: "This page has no photo. Write your story here."
+  }
+];
+
+/* =====================================================================
+   3. CODE — you do not need to edit below this line.
+   ===================================================================== */
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+const day = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { weekday: "long" });
+
+/* ---------- Intro ---------- */
+(function intro() {
+  const el = $("intro");
+  let seen = false;
+  try { seen = localStorage.getItem("ocp_intro") === "1"; } catch (e) {}
+  if (seen) { el.classList.add("hide"); showLogin(); return; }
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement("div");
+    s.className = "star";
+    s.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 3}s`;
+    el.appendChild(s);
+  }
+  const timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  let done = false;
+  function finish() {
+    if (done) return; done = true;
+    timers.forEach(clearTimeout);
+    try { localStorage.setItem("ocp_intro", "1"); } catch (e) {}
+    el.classList.add("out");
+    showLogin();
+    setTimeout(() => el.classList.add("hide"), 900);
+  }
+  $("skip").onclick = finish;
+  at(800, () => $("ibook").classList.add("show"));
+  at(2200, () => { const b = $("ibook"); b.textContent = "📖"; b.classList.add("open"); });
+  at(2700, () => {
+    for (let i = 0; i < 26; i++) {
+      const p = document.createElement("div");
+      p.className = "spark";
+      const a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 160;
+      p.style.cssText = `left:50%;top:42%;--x:${Math.cos(a) * d}px;--y:${Math.sin(a) * d - 60}px`;
+      el.appendChild(p);
+      setTimeout(() => p.remove(), 2100);
+    }
+  });
+  at(3200, () => $("ititle").classList.add("show"));
+  at(4100, () => $("itag").classList.add("show"));
+  at(5600, finish);
+})();
+
+/* ---------- Login ---------- */
+function showLogin() {
+  if (sessionStorage.getItem("ocp_in") === "1") return enterApp();
+  $("login").classList.remove("hide");
+}
+function enterApp() {
+  $("login").classList.add("hide");
+  $("app").classList.remove("hide");
+  renderAll();
+}
+function doLogin() {
+  if ($("pass").value === PASSWORD) {
+    sessionStorage.setItem("ocp_in", "1");
+    $("lerr").textContent = "";
+    $("lbox").classList.add("go");
+    setTimeout(() => { enterApp(); $("lbox").classList.remove("go"); $("pass").value = ""; }, 450);
+  } else {
+    $("lerr").textContent = "Incorrect password. Please try again.";
+    $("lbox").classList.remove("shake"); void $("lbox").offsetWidth; $("lbox").classList.add("shake");
+  }
+}
+$("lbtn").onclick = doLogin;
+$("pass").addEventListener("keydown", e => { if (e.key === "Enter") doLogin(); });
+$("eye").onclick = () => {
+  const p = $("pass"); const show = p.type === "password";
+  p.type = show ? "text" : "password"; $("eye").textContent = show ? "🙈" : "👁️";
+};
+$("logout").onclick = () => {
+  sessionStorage.removeItem("ocp_in");
+  $("app").classList.add("hide");
+  $("login").classList.remove("hide");
+  showSec("notice");
+};
+
+/* ---------- Navigation ---------- */
+function showSec(id) {
+  document.querySelectorAll("main section").forEach(s => s.classList.toggle("on", s.id === id));
+  document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("on", b.dataset.s === id));
+  if (id === "story") renderBook();
+  window.scrollTo({ top: 0 });
+}
+document.querySelectorAll("#nav button").forEach(b => b.onclick = () => showSec(b.dataset.s));
+
+/* ---------- Sections ---------- */
+function renderNotices() {
+  const list = notices.slice().sort((a, b) => (b.important - a.important) || String(b.date).localeCompare(String(a.date)));
+  $("noticeList").innerHTML = list.length ? list.map(n => `
+    <div class="card ${n.important ? "imp" : ""}">
+      <span class="tag ${n.important ? "imp" : ""}">${n.important ? "Important" : "Notice"}${n.date ? " · " + fmt(n.date) : ""}</span>
+      <h3>${esc(n.title)}</h3><p>${esc(n.text)}</p></div>`).join("") : '<div class="empty">No notices yet.</div>';
+}
+function renderKhan() {
+  const q = $("khanQ").value.trim().toLowerCase();
+  const list = khan.filter(k => k.name.toLowerCase().includes(q)).sort((a, b) => a.name.localeCompare(b.name));
+  $("khanList").innerHTML = list.length ? list.map(k => `
+    <div class="card"><h3>${esc(k.name)}</h3><p>Username: <b>${esc(k.username)}</b></p>
+    <div class="acts"><button data-copy="${esc(k.username)}">Copy username</button></div></div>`).join("") : '<div class="empty">No student found.</div>';
+}
+function renderExams() {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const list = exams.slice().sort((a, b) => a.date.localeCompare(b.date));
+  const next = list.find(e => new Date(e.date + "T00:00:00") >= today);
+  $("examList").innerHTML = list.length ? list.map(e => {
+    const past = new Date(e.date + "T00:00:00") < today;
+    const st = past ? '<span class="tag past">Completed</span>' : (e === next ? '<span class="tag up">Next exam</span>' : '<span class="tag">Upcoming</span>');
+    return `<div class="card ${past ? "past" : ""}">${st}<h3>${esc(e.subject)}</h3>
+      <p><b>${fmt(e.date)}</b> · ${day(e.date)}</p><p>${esc(e.details)}</p></div>`;
+  }).join("") : '<div class="empty">No exams added.</div>';
+}
+function renderNotes() {
+  $("notesList").innerHTML = notes.length ? notes.map(n => `
+    <div class="card"><h3>📄 ${esc(n.subject)}</h3><p>${esc(n.description)}</p>
+    <div class="acts"><a href="${esc(n.file)}" target="_blank" rel="noopener">Open PDF</a>
+    <a class="lt" href="${esc(n.file)}" download>Download</a></div></div>`).join("") : '<div class="empty">No notes yet.</div>';
+}
+function renderStudents() {
+  const q = $("stuQ").value.trim().toLowerCase();
+  const list = students.filter(s => s.name.toLowerCase().includes(q) || String(s.roll).toLowerCase().includes(q))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  $("stuList
